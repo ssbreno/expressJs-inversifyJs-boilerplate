@@ -1,0 +1,14 @@
+{
+  "name": "gen",
+  "version": "1.0.0",
+  "description": "CRUD For Gen",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Breno Sobral",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

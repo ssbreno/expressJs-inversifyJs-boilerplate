@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  api:
+    container_name: gen-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: sh -c "npm run start:dev"
+    depends_on:
+      - postgres
+  postgres:
+    image: 'bitnami/postgresql'
+    container_name: gen-db
+    environment:
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_USERNAME: ${DATABASE_USER}
+      POSTGRESQL_DATABASE: '${DATABASE_NAME}'
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    volumes:
+      - 'postgresql_data:/bitnami/postgresql'
+
+volumes:
+  postgresql_data:
+    driver: local

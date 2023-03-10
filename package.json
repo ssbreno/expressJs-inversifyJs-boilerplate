@@ -39,7 +39,8 @@
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.4.0",
     "typeorm": "0.3.6",
-    "typeorm-naming-strategies": "^4.1.0"
+    "typeorm-naming-strategies": "^4.1.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.3",
@@ -90,13 +91,7 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node",
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/../$1",
-      "^@business/(.*)$": "<rootDir>/../src/application/business/$1",
-      "^@controllers/(.*)$": "<rootDir>/../src/application/controllers/$1",
-      "^@dto/(.*)$": "<rootDir>/../src/domain/dto/$1"
-    }
+    "testEnvironment": "node"
   },
   "lint-staged": {
     "*.ts": [

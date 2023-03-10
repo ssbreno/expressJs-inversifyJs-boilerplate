@@ -6,6 +6,7 @@ import { swaggerSpec } from '../src/infrastructure/config/swagger';
 import bodyParser from 'body-parser';
 import dataSource from './infrastructure/config/datasource';
 import * as dotenv from 'dotenv';
+import categoryRouter from '../src/routes/category.routes';
 
 dotenv.config();
 const app = express();
@@ -37,8 +38,7 @@ app.get('/docs', swaggerUi.setup(swaggerSpec));
 app.get('/', (req, res) => res.redirect('docs'));
 
 /* Routes */
-const routes = require('../src/routes');
-app.use('/', routes);
+app.use('/api/category', categoryRouter);
 
 app.listen(port, () => {
   console.log(`Server started with pid: ${process.pid} on port: ${port}`);

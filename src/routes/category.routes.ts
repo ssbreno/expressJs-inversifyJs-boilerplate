@@ -1,20 +1,21 @@
 import express from 'express';
+import { createCategoryHandler } from '../application/controllers/category/category.controller';
 
 const router = express.Router();
 
 /**
  * @swagger
- * /api/products-category/create:
+ * /api/category/create:
  *   post:
  *     tags:
- *       - "Products Category"
- *     description: "Add Product Category"
- *     operationId: controllerProducts.addProductCategory
+ *       - "Category"
+ *     description: "Add Category"
+ *     operationId: controller.addCategory
  *     produces:
  *       - application/json
  *     responses:
  *       '200':
- *         description: Add Product Category Response
+ *         description: Add Category Response
  *         content:
  *           application/json:
  *             schema:
@@ -38,7 +39,7 @@ const router = express.Router();
  *                   type: string
  *                   description: Status = failure
  */
-router.post('/api/products/create');
+router.route('/create').post(createCategoryHandler);
 
 /**
  * @swagger
@@ -76,6 +77,6 @@ router.post('/api/products/create');
  *                   type: string
  *                   description: Status = failure
  */
-router.get('/api/products/create');
+router.get('/api/products/get/:id');
 
-module.exports = router;
+export default router;

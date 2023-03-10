@@ -95,9 +95,7 @@
       "^@/(.*)$": "<rootDir>/../$1",
       "^@business/(.*)$": "<rootDir>/../src/application/business/$1",
       "^@controllers/(.*)$": "<rootDir>/../src/application/controllers/$1",
-      "^@modules/(.*)$": "<rootDir>/../src/application/modules/$1",
-      "^@dto/(.*)$": "<rootDir>/../src/domain/dto/$1",
-      "^@entities/(.*)$": "<rootDir>/../src/domain/entities/$1"
+      "^@dto/(.*)$": "<rootDir>/../src/domain/dto/$1"
     }
   },
   "lint-staged": {

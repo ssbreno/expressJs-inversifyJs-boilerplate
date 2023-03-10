@@ -15,7 +15,7 @@
       "@/src*": ["/src*"],
       "@business/*": ["./src/application/business/*"],
       "@controllers/*": ["./src/application/controllers/*"],
-      "@dto/*": ["./src/domain/dto/*"],
+      "@dto/*": ["./src/domain/dto/*"]
     }
   }
 }

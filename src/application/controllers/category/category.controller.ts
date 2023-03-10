@@ -23,7 +23,7 @@ export class CategoryController extends BaseController {
       .delete(`${this.path}/:id`, this.deleteCategory.bind(this));
   }
 
-  private async getCategory(request: Request, response: Response) {
+  public async getCategory(request: Request, response: Response) {
     try {
       const id = request.params.id;
       const data = await this.categoryService.findByIdCategory(id);
@@ -37,7 +37,7 @@ export class CategoryController extends BaseController {
     }
   }
 
-  private async createCategory(
+  public async createCategory(
     request: BodyRequest<CategoryDTO>,
     response: Response,
   ) {
@@ -53,7 +53,7 @@ export class CategoryController extends BaseController {
     }
   }
 
-  private async deleteCategory(request: Request, response: Response) {
+  public async deleteCategory(request: Request, response: Response) {
     try {
       const id = request.params.id;
       const data = await this.categoryService.deleteCategory(id);
@@ -67,7 +67,7 @@ export class CategoryController extends BaseController {
     }
   }
 
-  private async updateCategory(
+  public async updateCategory(
     request: BodyRequest<CategoryDTO>,
     response: Response,
   ) {
@@ -84,7 +84,7 @@ export class CategoryController extends BaseController {
     }
   }
 
-  private async getAllCategory(request: Request, response: Response) {
+  public async getAllCategory(request: Request, response: Response) {
     try {
       const data = await this.categoryService.getAllCategory(request.query);
       response.send(data);

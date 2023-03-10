@@ -31,7 +31,7 @@ export class CategoryService {
     return getCategory;
   }
 
-  public async findByIdCategory(id: string): Promise<any> {
+  public async findByIdCategory(id: string): Promise<Category> {
     const getCategory = await this.categoryRepository.findOne({
       where: [
         {
@@ -61,14 +61,18 @@ export class CategoryService {
     }
   }
 
-  public async createCategory(categoryDTO: CategoryDTO): Promise<CategoryDTO> {
+  public async createCategory(
+    categoryDTO: Pick<CategoryDTO, 'name'>,
+  ): Promise<Category> {
     const findCategoryName = await this.findByNameCategory(categoryDTO);
     if (!findCategoryName) {
       return await this.categoryRepository.save(categoryDTO);
     }
   }
 
-  public async updateCategory(categoryDTO: CategoryDTO): Promise<CategoryDTO> {
+  public async updateCategory(
+    categoryDTO: Partial<CategoryDTO>,
+  ): Promise<Category> {
     const findCategoryName = await this.findByIdCategory(categoryDTO.id);
     if (findCategoryName) {
       return await this.categoryRepository.save(categoryDTO);

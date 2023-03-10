@@ -10,27 +10,17 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 const app = express();
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: '*',
     credentials: true,
   }),
 );
+const port = process.env.PORT || 8000;
 
 dataSource.initialize();
 
-const port = process.env.PORT || 8000;
-
-// HEALTH CHECKER
-app.get('/api/healthcheck', async (_, res: Response) => {
-  res.status(200).json({
-    status: 'success',
-    message: 'Welcome to Node.js, we are happy to see you',
-  });
-});
-
-// GLOBAL ERROR HANDLER
 app.use((error: AppError, req: Request, res: Response, next: NextFunction) => {
   error.status = error.status || 'error';
   error.statusCode = error.statusCode || 500;

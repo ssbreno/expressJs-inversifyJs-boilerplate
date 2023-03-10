@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "skipLibCheck": true,
+    "outDir": "./build",
+    "paths": {
+      "@/*": ["/*"],
+      "@/src*": ["/src*"],
+      "@business/*": ["./src/application/business/*"],
+      "@controllers/*": ["./src/application/controllers/*"],
+      "@modules/*": ["./src/application/modules/*"],
+      "@dto/*": ["./src/domain/dto/*"],
+      "@entities/*": ["src/domain/entities/*"]
+    }
+  }
+}

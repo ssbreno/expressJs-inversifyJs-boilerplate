@@ -44,7 +44,7 @@ app.use((error: AppError, req: Request, res: Response, next: NextFunction) => {
 /* Swagger */
 app.use('/docs', swaggerUi.serve);
 app.get('/docs', swaggerUi.setup(swaggerSpec));
-app.get('/', (req, res, next) => res.redirect('docs'));
+app.get('/', (req, res) => res.redirect('docs'));
 
 /* Routes */
 const routes = require('../src/routes');

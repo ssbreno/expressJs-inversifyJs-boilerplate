@@ -7,7 +7,7 @@
   "license": "ISC",
   "scripts": {
     "prepare": "husky install",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -16,8 +16,8 @@
     "start": "ts-node-dev --respawn --transpile-only --exit-child src/app.ts",
     "build": "tsc -p .",
     "migrate:generate": "ts-node ./generate-migrations.ts",
-    "migrate:run": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run -d src/infrastructure/configurations/datasource.config.ts",
-    "migrate:revert": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:revert -d src/infrastructure/configurations/datasource.config.ts"
+    "migrate:run": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run -d src/infrastructure/config/datasource.ts",
+    "migrate:revert": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:revert -d src/infrastructure/config/datasource.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

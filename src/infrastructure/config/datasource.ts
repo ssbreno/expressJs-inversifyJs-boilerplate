@@ -12,7 +12,7 @@ export const dataSourceOptions: DataSourceOptions = {
   username: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   port: 5432,
-  entities: [__dirname + '/../../../**/entities/**/*.entity.{js,ts}'],
+  entities: [__dirname + '/../../domain/entities/*.entity.{js,ts}'],
   migrations: ['src/infrastructure/database/migrations/*.{js,ts}'],
   migrationsTableName: 'migrations',
   synchronize: false,

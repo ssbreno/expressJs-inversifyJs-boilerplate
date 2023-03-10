@@ -26,4 +26,7 @@ export class ProductDTO implements Readonly<ProductDTO> {
   @IsUUID()
   @IsNotEmpty()
   categoryId: string;
+
+  @IsOptional()
+  page: number;
 }

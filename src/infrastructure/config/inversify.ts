@@ -15,6 +15,10 @@ import { BaseController } from '../../common/controllers/base.controller';
 import { CategoryController } from '../../application/controllers/category/category.controller';
 import { CategoryService } from '../../application/business/category/category.service';
 import { SwaggerConfig } from '../../infrastructure/config/swagger';
+import { ProductService } from '../../application/business/products/products.service';
+import { ProductController } from '../../application/controllers/products/products.controller';
+import { InstallmentsController } from '../../application/controllers/installments/installments.controller';
+import { InstallmentsService } from '../../application/business/installments/installments.service';
 
 export class Container {
   private _container: InversifyContainer = new InversifyContainer();
@@ -44,13 +48,17 @@ export class Container {
 
   private getControllersModule(): ContainerModule {
     return new ContainerModule((bind: interfaces.Bind) => {
+      bind<BaseController>(BaseController).to(ProductController);
       bind<BaseController>(BaseController).to(CategoryController);
+      bind<BaseController>(BaseController).to(InstallmentsController);
     });
   }
 
   private getServicesModule(): ContainerModule {
     return new ContainerModule((bind: interfaces.Bind) => {
       bind<CategoryService>(CategoryService).toSelf();
+      bind<ProductService>(ProductService).toSelf();
+      bind<InstallmentsService>(InstallmentsService).toSelf();
     });
   }
 

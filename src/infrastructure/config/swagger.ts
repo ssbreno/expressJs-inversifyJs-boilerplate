@@ -1,29 +1,42 @@
-import swaggerJsdoc from 'swagger-jsdoc';
+import { injectable } from 'inversify';
+import * as swaggerJSDoc from 'swagger-jsdoc';
+import * as swaggerUi from 'swagger-ui-express';
+import { Application, Router } from 'express';
 
-const url = 'http://localhost:3000';
+@injectable()
+export class SwaggerConfig {
+  public initialize(app: Application) {
+    const options = {
+      swaggerDefinition: {
+        info: {
+          title: 'CRUD API Documentation for Gen',
+          version: '1.0.0',
+          description:
+            'ExpressJs InversifyJs TypeOrm Postgres Application Documentation',
+        },
+        schemes: ['http'],
+        host: `http://localhost:8000`,
+        basePath: `/api`,
+        contact: {
+          email: 'ssobralbreno@gmail.com',
+          name: 'Breno Sobral',
+        },
+      },
+      apis: [
+        `./src/application/controllers/**/*.controller.ts`,
+        `./src/domain/dto/**/*.dto.ts`,
+      ],
+    };
 
-const swaggerDefinition = {
-  info: {
-    contact: {
-      email: 'ssobralbreno@gmail.com',
-      name: 'Breno Sobral',
-    },
-    description: 'Custom structure to build an REST API using Express.js',
-    license: {
-      name: 'All Rights Reserved',
-    },
-    title: 'Gen CRUD API Documentation',
-    version: '1.0',
-  },
-  openapi: '3.0.0',
-  produces: ['application/json'],
-  servers: [{ url }],
-};
+    const swaggerSpec = swaggerJSDoc(options);
 
-const options = {
-  apis: ['./src/routes/*.ts'],
-  basePath: '/',
-  swaggerDefinition,
-};
+    const swaggerRouter = Router();
+    swaggerRouter.get('/v1/swagger.json', function (req, res) {
+      res.setHeader('Content-Type', 'application/json');
+      res.send(swaggerSpec);
+    });
+    swaggerRouter.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-export const swaggerSpec = swaggerJsdoc(options);
+    app.use('/docs', swaggerRouter);
+  }
+}

@@ -1,21 +1,95 @@
+import { BaseController } from '../../../common/controllers/base.controller';
 import { Request, Response } from 'express';
+import { inject, injectable } from 'inversify';
 import { CategoryDTO } from '../../../domain/dto/category.dto';
-import { createCategory } from '../../business/category/category.service';
+import { CategoryService } from '../../business/category/category.service';
+import { BodyRequest } from '../../../common/interface/body.interface';
+import { StatusHelper } from '../../../common/helpers/status.helper';
 
-export const createCategoryHandler = async (
-  req: Request<CategoryDTO>,
-  res: Response,
-) => {
-  try {
-    const categoryCreated = await createCategory(req.body);
+@injectable()
+export class CategoryController extends BaseController {
+  @inject(CategoryService) private readonly categoryService: CategoryService;
 
-    res.status(201).json({
-      status: 'success',
-      data: {
-        categoryCreated,
-      },
-    });
-  } catch (err: any) {
-    throw err;
+  constructor() {
+    super('/category');
   }
-};
+
+  public initializeRoutes(): void {
+    this.router
+      .post(`${this.path}/create`, this.createCategory.bind(this))
+      .get(`${this.path}/:id`, this.getCategory.bind(this))
+      .put(`${this.path}/:id`, this.updateCategory.bind(this))
+      .get(this.path, this.getAllCategory.bind(this))
+      .delete(`${this.path}/:id`, this.deleteCategory.bind(this));
+  }
+
+  private async getCategory(request: Request, response: Response) {
+    try {
+      const id = request.params.id;
+      const data = await this.categoryService.findByIdCategory(id);
+      if (data)
+        response
+          .location(`${this.path}/${data.id}`)
+          .status(StatusHelper.status200OK)
+          .send(data);
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  private async createCategory(
+    request: BodyRequest<CategoryDTO>,
+    response: Response,
+  ) {
+    try {
+      const dto = request.body as CategoryDTO;
+      const data = await this.categoryService.createCategory(dto);
+      response
+        .location(`${this.path}/${data.name}`)
+        .status(StatusHelper.status201Created)
+        .send(data);
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  private async deleteCategory(request: Request, response: Response) {
+    try {
+      const id = request.params.id;
+      const data = await this.categoryService.deleteCategory(id);
+      if (data)
+        response
+          .location(`${this.path}/${data.id}`)
+          .status(StatusHelper.status200OK)
+          .send(data);
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  private async updateCategory(
+    request: BodyRequest<CategoryDTO>,
+    response: Response,
+  ) {
+    try {
+      const dto = request.body as CategoryDTO;
+      const data = await this.categoryService.updateCategory(dto);
+      if (data)
+        response
+          .location(`${this.path}/${data.id}`)
+          .status(StatusHelper.status200OK)
+          .send(data);
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  private async getAllCategory(request: Request, response: Response) {
+    try {
+      const data = await this.categoryService.getAllCategory(request.query);
+      response.send(data);
+    } catch (err) {
+      throw err;
+    }
+  }
+}

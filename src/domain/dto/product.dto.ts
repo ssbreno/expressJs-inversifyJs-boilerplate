@@ -9,21 +9,21 @@ import {
 export class ProductDTO implements Readonly<ProductDTO> {
   @IsUUID()
   @IsOptional()
-  id?: string;
+  id: string;
 
   @IsString()
   @IsNotEmpty()
-  name?: string;
+  name: string;
 
   @IsString()
   @IsNotEmpty()
-  description?: string;
+  description: string;
 
   @IsNumber()
   @IsNotEmpty()
-  value?: number;
+  value: number;
 
   @IsUUID()
   @IsNotEmpty()
-  categoryId?: string;
+  categoryId: string;
 }

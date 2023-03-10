@@ -1,10 +1,10 @@
-import { ProductDTO } from '@dto/product.dto';
+import { ProductDTO } from '../../domain/dto/product.dto';
 import { Entity, Column, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../../common/utils/base-entity';
 import { Category } from './category.entity';
 
 @Entity()
-export class Product extends BaseEntity implements ProductDTO {
+export class Product extends BaseEntity {
   @Column({ type: 'varchar', length: 255 })
   name: string;
 

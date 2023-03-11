@@ -11,7 +11,7 @@ import {
 export class CategoryService {
   private categoryRepository = dataSource.getRepository(Category);
 
-  public async findByNameCategory(
+  public async findCategoryByName(
     categoryDTO: Pick<CategoryDTO, 'name'>,
   ): Promise<any> {
     const getCategory = await this.categoryRepository.findOne({
@@ -31,7 +31,7 @@ export class CategoryService {
     return getCategory;
   }
 
-  public async findByIdCategory(id: string): Promise<Category> {
+  public async findCategoryById(id: string): Promise<Category> {
     const getCategory = await this.categoryRepository.findOne({
       where: [
         {
@@ -50,33 +50,30 @@ export class CategoryService {
   }
 
   public async deleteCategory(id: string): Promise<any> {
-    const findCategoryName = await this.findByIdCategory(id);
-    if (findCategoryName) {
+    const findCategoryName = await this.findCategoryById(id);
+    if (findCategoryName)
       return await this.categoryRepository
         .createQueryBuilder('category')
         .delete()
         .from(Category)
         .where('id = :id', { id: id })
         .execute();
-    }
   }
 
   public async createCategory(
     categoryDTO: Pick<CategoryDTO, 'name'>,
   ): Promise<Category> {
-    const findCategoryName = await this.findByNameCategory(categoryDTO);
-    if (!findCategoryName) {
+    const findCategoryName = await this.findCategoryByName(categoryDTO);
+    if (!findCategoryName)
       return await this.categoryRepository.save(categoryDTO);
-    }
   }
 
   public async updateCategory(
     categoryDTO: Partial<CategoryDTO>,
   ): Promise<Category> {
-    const findCategoryName = await this.findByIdCategory(categoryDTO.id);
-    if (findCategoryName) {
+    const findCategoryName = await this.findCategoryById(categoryDTO.id);
+    if (findCategoryName)
       return await this.categoryRepository.save(categoryDTO);
-    }
   }
 
   public async getAllCategory(whereArgs: Partial<CategoryDTO>): Promise<any> {

@@ -1,6 +1,7 @@
 import { InstallmentsService } from '../../../application/business/installments/installments.service';
 import { BaseController } from '../../../common/controllers/base.controller';
 import { injectable, inject } from 'inversify';
+import { Request, Response } from 'express';
 
 @injectable()
 export class InstallmentsController extends BaseController {
@@ -17,7 +18,10 @@ export class InstallmentsController extends BaseController {
 
   public async getProductInstallments(request: Request, response: Response) {
     try {
-      return null;
+      const data = await this.installmentsService.getProductCategoryData(
+        request.query,
+      );
+      return response.json(data);
     } catch (err) {
       throw err;
     }

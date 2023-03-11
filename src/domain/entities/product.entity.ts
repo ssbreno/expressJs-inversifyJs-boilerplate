@@ -11,7 +11,7 @@ export class Product extends BaseEntity {
   @Column({ type: 'varchar', length: 255 })
   description: string;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'float' })
   value: number;
 
   @Column({ type: 'varchar' })

@@ -1,44 +1,66 @@
-import { ProductDTO } from '../../../domain/dto/product.dto';
 import { injectable } from 'inversify';
+import { InstallmentsDTO } from '../../../domain/dto/installments.dto';
+import { ProductService } from '../products/products.service';
 
 @injectable()
 export class InstallmentsService {
-  public calculateMonthlyInstallment(
-    price: number,
-    interestRate: number,
-    numInstallments: number,
-  ): number {
-    const monthlyInterestRate = interestRate / 12;
-    return (
-      (price * monthlyInterestRate) /
-      (1 - Math.pow(1 + monthlyInterestRate, -numInstallments))
-    );
-  }
+  constructor(private readonly productService: ProductService) {}
 
-  public getProductById(products: any, productId: string) {
-    return products.find((product: any) => product.id === productId);
-  }
-
-  public getCategoryInterestRate(category: string): any {
-    let juros = 0;
+  public getTaxCategory(category: string): number {
     switch (category.toLowerCase()) {
       case 'informática':
-        juros = 0.05;
-        break;
+        return 5 / 100;
       case 'automotivo':
-        juros = 0.025;
-        break;
+        return 2.5 / 100;
       case 'móveis':
-        juros = 0.01;
-        break;
+        return 1 / 100;
       default:
-        throw new Error('Categoria inválida');
+        return 0;
     }
-
-    return juros;
   }
 
-  public validateProduct(product: ProductDTO): boolean {
-    return !!product && !!product.value && !!product.categoryId;
+  public getInstallments(installmentsDTO: Partial<InstallmentsDTO>) {
+    const monthlyInterestRate = installmentsDTO.tax / 12;
+    const monthlyInstallments =
+      (installmentsDTO.value * monthlyInterestRate) /
+      (1 - Math.pow(1 + monthlyInterestRate, -installmentsDTO.installments));
+    const installmentsObject = {};
+    for (let i = 1; i <= installmentsDTO.installments; i++) {
+      installmentsObject[i] = Math.round(monthlyInstallments * 100) / 100;
+    }
+    return installmentsObject;
+  }
+
+  public async getProductCategoryData(
+    installmentsDTO: Partial<InstallmentsDTO>,
+  ) {
+    let findProducts;
+    if (installmentsDTO.name) {
+      findProducts = await this.productService.findProductRelations(
+        installmentsDTO.name,
+      );
+      const tax = this.getTaxCategory(findProducts.category.name);
+      installmentsDTO.tax = tax;
+      installmentsDTO.value = findProducts.value;
+      const getInstallments = this.getInstallments(installmentsDTO);
+      const installments = {};
+      Object.keys(getInstallments).forEach(key => {
+        installments[key] = getInstallments[key];
+      });
+      const installmentsValue: any = Object.values(getInstallments).reduce(
+        (installments: number, currentValue: number) =>
+          installments + currentValue,
+        0,
+      );
+      const formatInstallments = Math.round(installmentsValue * 100) / 100;
+      return {
+        noTaxValue: findProducts.value,
+        formatInstallments,
+        tax,
+        installments,
+      };
+    }
+
+    return { message: 'Search a product by name, to calculate installments' };
   }
 }

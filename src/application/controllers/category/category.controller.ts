@@ -26,7 +26,7 @@ export class CategoryController extends BaseController {
   public async getCategory(request: Request, response: Response) {
     try {
       const id = request.params.id;
-      const data = await this.categoryService.findByIdCategory(id);
+      const data = await this.categoryService.findCategoryById(id);
       if (data)
         response
           .location(`${this.path}/${data.id}`)

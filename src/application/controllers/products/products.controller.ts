@@ -26,7 +26,7 @@ export class ProductController extends BaseController {
   public async getProduct(request: Request, response: Response) {
     try {
       const id = request.params.id;
-      const data = await this.productService.findByIdProduct(id);
+      const data = await this.productService.findProductById(id);
       if (data)
         response
           .location(`${this.path}/${data.id}`)

@@ -14,7 +14,7 @@ export class ProductService {
 
   private productRepository = dataSource.getRepository(Product);
 
-  public async findByNameProduct(
+  public async productExists(
     productDTO: Pick<ProductDTO, 'name'>,
   ): Promise<any> {
     const getProduct = await this.productRepository.findOne({
@@ -34,7 +34,23 @@ export class ProductService {
     return getProduct;
   }
 
-  public async findByIdProduct(id: string): Promise<Product> {
+  public async findProductRelations(name: string): Promise<Product> {
+    const getProduct = await this.productRepository.findOne({
+      where: {
+        name: name,
+      },
+      relations: {
+        category: true,
+      },
+    });
+
+    if (!getProduct)
+      throw new ValidationError(ValidationErrorPlace.Body, 'Product Not Found');
+
+    return getProduct;
+  }
+
+  public async findProductById(id: string): Promise<Product> {
     const getProduct = await this.productRepository.findOne({
       where: [
         {
@@ -50,7 +66,7 @@ export class ProductService {
   }
 
   public async deleteProduct(id: string): Promise<any> {
-    const findProductName = await this.findByIdProduct(id);
+    const findProductName = await this.findProductById(id);
     if (findProductName) {
       return await this.productRepository
         .createQueryBuilder('Product')
@@ -62,8 +78,8 @@ export class ProductService {
   }
 
   public async createProduct(productDTO: ProductDTO): Promise<Product> {
-    const findProductName = await this.findByNameProduct(productDTO);
-    const findCategoryId = await this.categoryService.findByIdCategory(
+    const findProductName = await this.productExists(productDTO);
+    const findCategoryId = await this.categoryService.findCategoryById(
       productDTO.categoryId,
     );
     if (!findProductName && findCategoryId) {
@@ -74,7 +90,7 @@ export class ProductService {
   public async updateProduct(
     productDTO: Partial<ProductDTO>,
   ): Promise<Product> {
-    const findProductName = await this.findByIdProduct(productDTO.id);
+    const findProductName = await this.findProductById(productDTO.id);
     if (findProductName) {
       return await this.productRepository.save(productDTO);
     }
@@ -118,6 +134,8 @@ export class ProductService {
         categoryId: whereArgs.categoryId,
       });
     }
+
+    productQueryBuilder.innerJoinAndSelect('product.category', 'category');
 
     productQueryBuilder.take(take);
     productQueryBuilder.skip(skip);

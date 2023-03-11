@@ -29,7 +29,7 @@ describe('CategoryService', () => {
         .spyOn(categoryRepository, 'findOne')
         .mockResolvedValueOnce(null);
 
-      const result = await categoryService.findByNameCategory(categoryDTO);
+      const result = await categoryService.findCategoryByName(categoryDTO);
 
       expect(findOneSpy).toHaveBeenCalledTimes(1);
       expect(findOneSpy).toHaveBeenCalledWith({
@@ -50,7 +50,7 @@ describe('CategoryService', () => {
         .mockResolvedValueOnce(existingCategory);
 
       await expect(
-        categoryService.findByNameCategory(categoryDTO),
+        categoryService.findCategoryByName(categoryDTO),
       ).rejects.toThrowError(
         new ValidationError(
           ValidationErrorPlace.Body,
@@ -74,7 +74,7 @@ describe('CategoryService', () => {
         name: 'new-category',
       };
       const findByNameCategorySpy = jest
-        .spyOn(categoryService, 'findByNameCategory')
+        .spyOn(categoryService, 'findCategoryByName')
         .mockResolvedValueOnce(null);
       const saveSpy = jest
         .spyOn(categoryRepository, 'save')
@@ -97,7 +97,7 @@ describe('CategoryService', () => {
         name: 'existing-category',
       };
       const findByNameCategorySpy = jest
-        .spyOn(categoryService, 'findByNameCategory')
+        .spyOn(categoryService, 'findCategoryByName')
         .mockResolvedValueOnce(existingCategory);
 
       const result = await categoryService.createCategory(categoryDTO);
@@ -122,7 +122,7 @@ describe('CategoryService', () => {
         name: 'updated-category',
       };
       const findByIdCategorySpy = jest
-        .spyOn(categoryService, 'findByIdCategory')
+        .spyOn(categoryService, 'findCategoryById')
         .mockResolvedValueOnce(existingCategory);
       const saveSpy = jest
         .spyOn(categoryRepository, 'save')
@@ -143,7 +143,7 @@ describe('CategoryService', () => {
         name: 'non-existing-category',
       };
       const findByIdCategorySpy = jest
-        .spyOn(categoryService, 'findByIdCategory')
+        .spyOn(categoryService, 'findCategoryById')
         .mockResolvedValueOnce(null);
 
       const result = await categoryService.updateCategory(categoryDTO);
@@ -166,7 +166,7 @@ describe('CategoryService', () => {
         .spyOn(categoryRepository, 'findOne')
         .mockResolvedValueOnce(category);
 
-      const result = await categoryService.findByIdCategory(category.id);
+      const result = await categoryService.findCategoryById(category.id);
 
       expect(findOneSpy).toHaveBeenCalledTimes(1);
       expect(findOneSpy).toHaveBeenCalledWith({
@@ -181,7 +181,7 @@ describe('CategoryService', () => {
         .spyOn(categoryRepository, 'findOne')
         .mockResolvedValueOnce(null);
 
-      await expect(categoryService.findByIdCategory(invalidId)).rejects.toThrow(
+      await expect(categoryService.findCategoryById(invalidId)).rejects.toThrow(
         'HTTP 400 status',
       );
       expect(findOneSpy).toHaveBeenCalledTimes(1);
@@ -197,7 +197,7 @@ describe('CategoryService', () => {
 
     it('should throw an error if category is not found', async () => {
       const findOneSpy = jest
-        .spyOn(categoryService, 'findByIdCategory')
+        .spyOn(categoryService, 'findCategoryById')
         .mockResolvedValueOnce(null);
 
       const result = await categoryService.deleteCategory(id);
@@ -210,7 +210,7 @@ describe('CategoryService', () => {
     it('should delete the category successfully', async () => {
       const id = '6b348034-48da-4285-8c1b-990a3934873b';
       const findOneSpy = jest
-        .spyOn(categoryService, 'findByIdCategory')
+        .spyOn(categoryService, 'findCategoryById')
         .mockResolvedValueOnce(null);
       const result = await categoryService.deleteCategory(id);
 

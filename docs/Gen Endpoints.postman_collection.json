@@ -1,308 +1,248 @@
 {
-	"info": {
-		"_postman_id": "bd1dc2d1-3401-4fa2-9663-b34d6819689e",
-		"name": "Gen Endpoints",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "5805936"
-	},
-	"item": [
-		{
-			"name": "Create Category",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"automotivo\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/category/create",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"category",
-						"create"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Category",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/category/709d9298-9d86-476f-9814-8eea5ef937d8",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"category",
-						"709d9298-9d86-476f-9814-8eea5ef937d8"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update Category",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"id\": \"709d9298-9d86-476f-9814-8eea5ef937d8\",\n    \"name\": \"Breno Eletronics\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/category/update",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"category",
-						"update"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Category",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/category/6b348034-48da-4285-8c1b-990a3934873b",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"category",
-						"6b348034-48da-4285-8c1b-990a3934873b"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Find All Category",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/category/?page=1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"category",
-						""
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "",
-							"disabled": true
-						},
-						{
-							"key": "name",
-							"value": "teste",
-							"disabled": true
-						},
-						{
-							"key": "page",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Product",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Pneu do fusca\",\n    \"description\": \"Pneu do fusca\",\n    \"value\": 5421.21,\n    \"categoryId\": \"bdfbcbbe-fdf1-4885-a210-45b4876f5b95\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/product/create",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"product",
-						"create"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Product",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/product/0a9f0a67-8821-4e1b-846b-6cb76e517e3c",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"product",
-						"0a9f0a67-8821-4e1b-846b-6cb76e517e3c"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update Product",
-			"request": {
-				"method": "PUT",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Product",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/product/6b28bb41-0c87-4310-ad0e-09b840f5382c",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"product",
-						"6b28bb41-0c87-4310-ad0e-09b840f5382c"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Find All Products",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/product/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"product",
-						""
-					],
-					"query": [
-						{
-							"key": "name",
-							"value": null,
-							"disabled": true
-						},
-						{
-							"key": "description",
-							"value": null,
-							"disabled": true
-						},
-						{
-							"key": "value",
-							"value": null,
-							"disabled": true
-						},
-						{
-							"key": "categoryId",
-							"value": null,
-							"disabled": true
-						},
-						{
-							"key": "page",
-							"value": "1",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Installments for a Product",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8000/api/installments/?name=Sofa&installments=1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"installments",
-						""
-					],
-					"query": [
-						{
-							"key": "name",
-							"value": "Sofa"
-						},
-						{
-							"key": "installments",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "bd1dc2d1-3401-4fa2-9663-b34d6819689e",
+    "name": "Gen Endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "5805936"
+  },
+  "item": [
+    {
+      "name": "Create Category",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"automotivo\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/category/create",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "category", "create"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/category/709d9298-9d86-476f-9814-8eea5ef937d8",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "category", "709d9298-9d86-476f-9814-8eea5ef937d8"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Category",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"id\": \"709d9298-9d86-476f-9814-8eea5ef937d8\",\n    \"name\": \"Breno Eletronics\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/category/update",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "category", "update"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Category",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/category/6b348034-48da-4285-8c1b-990a3934873b",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "category", "6b348034-48da-4285-8c1b-990a3934873b"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Find All Category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/category/?page=1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "category", ""],
+          "query": [
+            {
+              "key": "id",
+              "value": "",
+              "disabled": true
+            },
+            {
+              "key": "name",
+              "value": "teste",
+              "disabled": true
+            },
+            {
+              "key": "page",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Product",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Pneu do fusca\",\n    \"description\": \"Pneu do fusca\",\n    \"value\": 5421.21,\n    \"categoryId\": \"bdfbcbbe-fdf1-4885-a210-45b4876f5b95\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/product/create",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "product", "create"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Product",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/product/0a9f0a67-8821-4e1b-846b-6cb76e517e3c",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "product", "0a9f0a67-8821-4e1b-846b-6cb76e517e3c"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Product",
+      "request": {
+        "method": "PUT",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Product",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/product/6b28bb41-0c87-4310-ad0e-09b840f5382c",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "product", "6b28bb41-0c87-4310-ad0e-09b840f5382c"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Find All Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/product/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "product", ""],
+          "query": [
+            {
+              "key": "name",
+              "value": null,
+              "disabled": true
+            },
+            {
+              "key": "description",
+              "value": null,
+              "disabled": true
+            },
+            {
+              "key": "value",
+              "value": null,
+              "disabled": true
+            },
+            {
+              "key": "categoryId",
+              "value": null,
+              "disabled": true
+            },
+            {
+              "key": "page",
+              "value": "1",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Installments for a Product",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/installments/?name=Sofa&installments=1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "installments", ""],
+          "query": [
+            {
+              "key": "name",
+              "value": "Sofa"
+            },
+            {
+              "key": "installments",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
 }

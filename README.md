@@ -26,6 +26,7 @@
 - Run ./init.sh option 1 to create containers
 
 # If everything is working
+
 - Run npm run migrate:run
 - Run npm run dev
 
@@ -34,7 +35,6 @@ Now, loading postman-collections in docs/ and test examples.
 # Testing
 
 - Only run npm run test
-
 
 # Finishing
 

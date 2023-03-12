@@ -83,6 +83,25 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
+    "coveragePathIgnorePatterns": [
+        "node_modules",
+        "test-config",
+        "interfaces",
+        ".module.ts",
+        ".error.ts",
+        ".entity.ts",
+        ".config.ts",
+        ".dto.ts",
+        ".enum.ts",
+        ".enum.ts",
+        ".middleware.ts",
+        "app.ts",
+        "server.ts",
+        ".helper.ts",
+        ".logger.ts",
+        "inversify.ts",
+        "swagger.ts"
+    ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   },

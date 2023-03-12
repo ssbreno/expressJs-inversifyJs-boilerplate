@@ -20,6 +20,11 @@ export class InstallmentsService {
   }
 
   public getInstallments(installmentsDTO: Partial<InstallmentsDTO>) {
+    if (!installmentsDTO) {
+      return {
+        message: 'Need to provide informations to calculate Installments',
+      };
+    }
     const monthlyInterestRate = installmentsDTO.tax / 12;
     const monthlyInstallments =
       (installmentsDTO.value * monthlyInterestRate) /

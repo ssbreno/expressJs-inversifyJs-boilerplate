@@ -1,5 +1,17 @@
 ## GEN Setup
 
+# Technologys
+
+- ExpressJs
+- InverisfyJs
+- NodeJs
+- JestJs
+- TypeORM
+- Postgres
+- Husky
+- Libs : Prettier, Lint, Swagger
+- NOTE: Unfortunately, i don't have the time to implement automatic Swagger imports, will implement in the next release.
+
 # Requirements
 
 - Docker
@@ -21,3 +33,8 @@ Now, loading postman-collections in docs/ and test examples.
 # Testing
 
 - Only run npm run test
+
+
+# Finishing
+
+![App Working](https://imgur.com/a/T0OTAMM)

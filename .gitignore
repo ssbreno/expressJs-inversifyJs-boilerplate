@@ -47,3 +47,4 @@ tfplan
 package-lock.json
 yarn.lock
 node_modules 
+junit.xml

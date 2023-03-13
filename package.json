@@ -13,6 +13,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:ci": "jest --collectCoverage --ci --reporters=default --reporters=jest-junit --watchAll=false",
     "dev": "ts-node-dev --no-notify --clear --debounce 1000 ./src/server.ts",
     "build": "tsc",
     "migrate:generate": "ts-node ./generate-migrations.ts",
